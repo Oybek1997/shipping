@@ -1,0 +1,5 @@
+Route::get('users/show', 'UserController@show');
+    Route::get('users', 'UserController@index');
+    Route::post('getuser/{tbn}', 'UserController@usercreate');
+    Route::post('users/update', 'UserController@update');
+    Route::delete('users/delete/{id}', 'UserController@destroy');

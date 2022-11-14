@@ -1,0 +1,10 @@
+.text-start {
+    border: 1px solid #ddd;
+  }
+  .v-data-table-header th {
+    background-color: rgb(51, 122, 183) !important;
+    color: white !important;
+  }
+  th {
+    white-space: nowrap;
+  }
