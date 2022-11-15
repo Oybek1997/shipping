@@ -134,66 +134,7 @@ export default {
           link: '/excel',
           visible: this.roles('admin') || this.roles('supply'),
         },
-        // {
-        //   title: this.$t('Excel yuklash(history)'),
-        //   icon: 'mdi-file-excel',
-        //   link: '/drawing',
-        //   visible: this.roles('admin') || this.roles('supply'),
-        // },
-        // {
-        //   title: this.$t('Excel yuklash(kunlik)'),
-        //   icon: 'mdi-file-excel',
-        //   link: '/drawingday',
-        //   visible: this.roles('admin') || this.roles('supply'),
-        // },
-        // {
-        //   title: this.$t('Excel yuklash(taxrir)'),
-        //   icon: 'mdi-file-excel',
-        //   link: '/drawingupdate',
-        //   visible: this.roles('admin') || this.roles('supply'),
-        // },
-        {
-          title: this.$t('Detallar soni'),
-          icon: 'mdi-tools',
-          link: '/report1',
-          visible:
-            this.roles('admin') || this.roles('report') || this.roles('supply'),
-        },
-        {
-          title: this.$t('Detallar soni 2'),
-          icon: 'mdi-tools',
-          link: '/detailcount2',
-          visible:
-            this.roles('admin') || this.roles('report') || this.roles('supply'),
-        },
-        {
-          title: this.$t('Detallar soni 3'),
-          icon: 'mdi-tools',
-          link: '/detailcount3',
-          visible:
-            this.roles('admin') || this.roles('report') || this.roles('supply'),
-        },
-        {
-          title: this.$t("Omborlar bo'yicha hisobot"),
-          icon: 'mdi-warehouse',
-          link: '/warehousereport',
-          visible:
-            this.roles('admin') || this.roles('report') || this.roles('supply'),
-        },
-        {
-          title: this.$t('Oylik omborlar hisoboti'),
-          icon: 'mdi-calendar',
-          link: '/monthreport',
-          visible:
-            this.roles('admin') || this.roles('report') || this.roles('supply'),
-        },
-        {
-          title: this.$t('Oylik avto hisoboti'),
-          icon: 'mdi-calendar',
-          link: '/modelreport',
-          visible:
-            this.roles('admin') || this.roles('report') || this.roles('supply'),
-        },
+
         {
           title: this.$t('Table'),
           icon: 'mdi-file-table',
@@ -226,12 +167,6 @@ export default {
           link: '/employees',
           visible: false,
           // visible: this.roles('admin'),
-        },
-        {
-          title: this.$t('Transport vositasi'),
-          icon: 'mdi-train-car',
-          link: '/transport',
-          visible: this.roles('admin'),
         },
         {
           title: this.$t('user.logs'),

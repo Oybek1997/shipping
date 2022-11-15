@@ -61,36 +61,6 @@ const routes = [
     ],
   },
   {
-    path: '/report1',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Report1'),
-      },
-    ],
-  },
-  {
-    path: '/detailcount2',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/DetailCount2'),
-      },
-    ],
-  },
-  {
-    path: '/detailcount3',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/DetailCount3'),
-      },
-    ],
-  },
-  {
     path: '/table',
     component: Layout,
     children: [
@@ -110,56 +80,8 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/drawing',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Drawing'),
-      },
-    ],
-  },
-  {
-    path: '/drawingday',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Drawingday'),
-      },
-    ],
-  },
-  {
-    path: '/drawingupdate',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Drawingupdate'),
-      },
-    ],
-  },
-  {
-    path: '/transport',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Transport'),
-      },
-    ],
-  },
-  {
-    path: '/warehousereport',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Vehicledetail'),
-      },
-    ],
-  },
+
+
   {
     path: '/employees',
     component: Layout,
@@ -167,26 +89,6 @@ const routes = [
       {
         path: '/',
         component: () => import('@/views/Employees'),
-      },
-    ],
-  },
-  {
-    path: '/monthreport',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Vehiclemonth'),
-      },
-    ],
-  },
-  {
-    path: '/modelreport',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/Vehiclemodel'),
       },
     ],
   },
