@@ -120,6 +120,84 @@ class VehicleController extends Controller
         // $user->delete();
     }
 
+    public function vehicles(Request $request)
+    {
+        dd($request);
+        $data = $request->all();
+        // [{"vin":"X3333333333333333","sector":"1","ombor":"1:\"UzAuto Motors\" \u0410\u0416","traller":"60 125 GBA","shafyor1":"Shafyor1","shafyor2":"T094 : ERKINBEK HAMDAMOV","tabno":"2300","tcd_date":"2022-09-26","iScan_Time":"20220926131857"},{"vin":"X1111111111111111","sector":"1","ombor":"5:\u0410\u0441\u0430\u043a\u0430 \u0414\u049a\u049a\u0428","traller":"60 125 GBA","shafyor1":"Shafyor1","shafyor2":"T094 : ERKINBEK HAMDAMOV","tabno":"2300","tcd_date":"2022-09-26","iScan_Time":"20220926130901"}]
+        // $data = $data[0]['vin'];
+        // file_put_contents(public_path('abc.txt'),$data);
+        $response = [];
+        foreach ($data as $key => $value) {
+            $vin = $value['vin'];
+            $sector = $value['sector'];
+            $row = $value['row'];
+            $tabno = $value['tabno'];
+            $tcd_date = $value['tcd_date'];
+            $iScan_Time = $value['iScan_Time'];
+
+
+
+            $vehicle = Vehicle::where('vin', $vin)->first();
+            //$ombor_id = $ombor ? explode(':', $ombor)[0] : null;
+
+
+            //$triler = TrilerDriver::where('out_tr_number', $traller)
+            //->where('out_first_driver', $shafyor1)
+            //->where('out_second_driver', $shafyor2)
+            //->first();
+
+            if (!$vehicle) {
+                $vehicle = new Vehicle();
+                $vehicle->vin = $vin;
+                $vehicle->sector = $sector;
+                $vehicle->row = $row;
+                $vehicle->tabno = $tabno;
+                $vehicle->tcd_date = $tcd_date;
+                $vehicle->iScan_Time = $iScan_Time;
+                $vehicle->save();
+            }
+
+//            if ($ombor_id) {
+//                if (!$vehicle) {
+//                    $vehicle = new Vehicle();
+//                    $vehicle->vin = $vin;
+//                }
+//                $vehicle->status = $status;
+//                $vehicle->warehouse_id = $ombor_id;
+//                $vehicle->sector = $sector;
+//                $vehicle->triler_driver_id = $triler->id;
+//
+//                if ($status==4) {
+//                    $vehicle->send_by = Auth::id();
+//                    $vehicle->send_at = date('Y-m-d H:i:s');
+//                } elseif ($status==5) {
+//                    $vehicle->warehouse_by = Auth::id();
+//                    $vehicle->warehouse_at = date('Y-m-d H:i:s');
+//                } elseif ($status==6) {
+//                    $vehicle->warehouse_out_by = Auth::id();
+//                    $vehicle->warehouse_out_at = date('Y-m-d H:i:s');
+//                }  elseif ($status==7) {
+//                    $vehicle->receive_by = Auth::id();
+//                    $vehicle->receive_at = date('Y-m-d H:i:s');
+//                }  elseif ($status==8) {
+//                    $vehicle->finish_by = Auth::id();
+//                    $vehicle->finish_at = date('Y-m-d H:i:s');
+//                }
+//                else{
+//                    print ("Bunday Status mavjud emas");
+//                }
+//                try {
+//                    $vehicle->save();
+//                    $response[] = ['vin' => $vin, 'status' => 200];
+//                } catch (\Throwable $th) {
+//                    $response[] = ['vin' => $vin, 'status' => 500, 'message' => $th->getMessage()];
+//                    // throw $th;
+//                }
+//            }
+        }
+        return $response;
+    }
     public function android(Request $request)
     {
         $data = $request->all();
@@ -146,9 +224,9 @@ class VehicleController extends Controller
 
 
             $triler = TrilerDriver::where('out_tr_number', $traller)
-            ->where('out_first_driver', $shafyor1)
-            ->where('out_second_driver', $shafyor2)
-            ->first();
+                ->where('out_first_driver', $shafyor1)
+                ->where('out_second_driver', $shafyor2)
+                ->first();
 
             if (!$triler) {
                 $triler = new TrilerDriver();
@@ -197,23 +275,5 @@ class VehicleController extends Controller
             }
         }
         return $response;
-    }
-    public function forGaraj($gNumner,$sdate,$edate)
-    {
-        // return [$gNumner,$sdate,$edate];
-        // $filter = $request->input('filter');
-        $car=$gNumner;
-        $start_date =$sdate . ' 00:00:00';
-		$end_date = $edate . ' 23:59:59';
-        $transport=TrilerDriver::select('id')->where('out_tr_number',$car)->get();
-        $mydate=Vehicle::select('vin','modelname','send_at','warehouse_id','triler_driver_id')
-            ->with('trilerInfo')
-            ->with('warehouse:id,name')
-            ->whereIn('triler_driver_id',$transport)
-            ->whereBetween('send_at', [$start_date,$end_date])
-            ->get()
-        ;
-
-        return ['request'=>$mydate,'count'=>$mydate->count(),'transport'=>$transport,$start_date,$end_date];
     }
 }
