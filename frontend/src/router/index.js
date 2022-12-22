@@ -132,17 +132,6 @@ const routes = [
       },
     ],
   },
-  //banners
-  {
-    path: '/banners',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        component: () => import('@/views/banners'),
-      },
-    ],
-  },
 ];
 
 const router = new VueRouter({

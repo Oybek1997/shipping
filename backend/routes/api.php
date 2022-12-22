@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('allFile', 'TestController@getAllFiles');
-
+Route::post('shipping-vehicles', 'VehicleController@vehicles');
 Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 
     Route::post('details/get-excel', 'DetailController@getExcel');
@@ -79,4 +79,4 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::post('hello', 'VehicleController@vehicles');
     Route::post('users/usercreate', 'UserController@simpleusercreate');
 });
-    Route::post('shipping-vehicles', 'VehicleController@vehicles');
+

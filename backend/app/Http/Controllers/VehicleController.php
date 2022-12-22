@@ -144,12 +144,13 @@ class VehicleController extends Controller
     public function vehicles(Request $request)
     {
         //return $request;
+//        return 1;
         $data = $request->all();
 
-        //return $data;
+//        return $data;
 
 
-        $vehicle= new Vehicle;
+        //vehicle= new Vehicle;
 
         $resp = array();
 
@@ -157,15 +158,7 @@ class VehicleController extends Controller
 
 
 
-//        $response = Http::acceptJson()->withToken($token)->post($this->base_url . $url, $data);
-  //      $response = Http::acceptJson()->post($this->base_url , $data);
 
-
-
-        //return $response;
-        // [{"vin":"X3333333333333333","sector":"1","ombor":"1:\"UzAuto Motors\" \u0410\u0416","traller":"60 125 GBA","shafyor1":"Shafyor1","shafyor2":"T094 : ERKINBEK HAMDAMOV","tabno":"2300","tcd_date":"2022-09-26","iScan_Time":"20220926131857"},{"vin":"X1111111111111111","sector":"1","ombor":"5:\u0410\u0441\u0430\u043a\u0430 \u0414\u049a\u049a\u0428","traller":"60 125 GBA","shafyor1":"Shafyor1","shafyor2":"T094 : ERKINBEK HAMDAMOV","tabno":"2300","tcd_date":"2022-09-26","iScan_Time":"20220926130901"}]
-        // $data = $data[0]['vin'];
-        // file_put_contents(public_path('abc.txt'),$data);
 
 
         $response = [];

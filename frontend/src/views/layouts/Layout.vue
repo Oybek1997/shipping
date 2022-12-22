@@ -175,12 +175,6 @@ export default {
           visible: false,
           // visible: this.roles('admin')
         },
-        {
-          title: this.$t('Banner'),
-          icon: 'mdi-file-table',
-          link: '/banners',
-          visible: false,
-        },
       ];
     },
     items() {
