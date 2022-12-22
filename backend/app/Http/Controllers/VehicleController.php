@@ -143,23 +143,10 @@ class VehicleController extends Controller
 
     public function vehicles(Request $request)
     {
-        //return $request;
-//        return 1;
+
         $data = $request->all();
 
-//        return $data;
-
-
-        //vehicle= new Vehicle;
-
         $resp = array();
-
-        //return $vehicle;
-
-
-
-
-
 
         $response = [];
         foreach ($data as $key => $value) {
@@ -172,11 +159,11 @@ class VehicleController extends Controller
 
             //return $value;
 
-            $vehicle = Vehicle::where('vin', $vin)->first();
+            //$vehicle = Vehicle::where('vin', $vin)->first();
 
             //return $vehicle;
 
-            if (!$vehicle) {
+            //if (!$vehicle) {
                 $vehicle = new Vehicle();
                 $vehicle->vin = $vin;
                 $vehicle->tabno = $tabno;
@@ -186,19 +173,20 @@ class VehicleController extends Controller
                 $vehicle->tcd_date = $tcd_date;
                 $vehicle->deleted_at = Null;
                 $vehicle->save();
-            }
+            //}
         }
-        $allVehicles = Vehicle::get();
+        //$allVehicles = Vehicle::get();
 
-        foreach ($allVehicles as $vehicleSingle) {
+        foreach ($data as $vehicleSingle) {
+            //return $vehicleSingle;
             $array_item =
                 [
-                    'vin' => $vehicleSingle->vin,
-                    'tabno' => $vehicleSingle->tabno,
-                    'status' => $vehicleSingle->status,
-                    'sector' => $vehicleSingle->sector,
-                    'row' => $vehicleSingle->row,
-                    'tcd_date' => $vehicleSingle->tcd_date
+                    'vin' => $vehicleSingle['vin'],
+                    'tabno' => $vehicleSingle['tabno'],
+                    'status' => $vehicleSingle['status']+1,
+                    'sector' => $vehicleSingle['sector'],
+                    'row' => $vehicleSingle['row'],
+                    'tcd_date' => $vehicleSingle['tcd_date']
                 ];
             array_push($resp, $array_item);
         }
