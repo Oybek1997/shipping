@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('allFile', 'TestController@getAllFiles');
 
+Route::post('/login', 'UserController@login');
+
 Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 
     Route::post('details/get-excel', 'DetailController@getExcel');
