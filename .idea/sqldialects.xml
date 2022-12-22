@@ -2,5 +2,9 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$USER_HOME$/Documents/ga04 .sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/ga04/ga04 (2).sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/ga04/vehicles (2).sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/shipping/shipping.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/shipping/vehicles (2).sql" dialect="MySQL" />
   </component>
 </project>

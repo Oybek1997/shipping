@@ -38,6 +38,7 @@
         @update:page="updatePage"
         @update:items-per-page="updatePerPage"
       >
+
         <template v-slot:item.id="{ item }">{{
           vehicles.map((v) => v.id).indexOf(item.id) + from
         }}</template>
@@ -67,28 +68,28 @@
             <v-container>
               <v-row>
                 <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Name') }}</label>
-                  <v-text-field v-model="form.name" dense></v-text-field>
-                </v-col>
-                <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Pono') }}</label>
-                  <v-text-field v-model="form.pono" dense></v-text-field>
-                </v-col>
-                <v-col class="pt-0" cols="12">
                   <label>{{ $t('Vin') }}</label>
                   <v-text-field v-model="form.vin" dense></v-text-field>
                 </v-col>
                 <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Seq') }}</label>
+                  <label>{{ $t('Tabno') }}</label>
                   <v-text-field v-model="form.ga_seq" dense></v-text-field>
                 </v-col>
                 <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Color') }}</label>
-                  <v-text-field v-model="form.color" dense></v-text-field>
+                    <label>{{ $t('Status') }}</label>
+                  <v-text-field v-model="form.status" dense></v-text-field>
                 </v-col>
                 <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Level') }}</label>
-                  <v-text-field v-model="form.levl" dense></v-text-field>
+                  <label>{{ $t('Sector') }}</label>
+                  <v-text-field v-model="form.sector" dense></v-text-field>
+                </v-col>
+                <v-col class="pt-0" cols="12">
+                  <label>{{ $t('Row') }}</label>
+                  <v-text-field v-model="form.row" dense></v-text-field>
+                </v-col>
+                <v-col class="pt-0" cols="12">
+                  <label>{{ $t('Tcd_date') }}</label>
+                  <v-text-field v-model="form.tcd_date" dense></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
@@ -142,24 +143,12 @@ export default {
     headers() {
       return [
         { text: this.$t('tr'), value: 'id', sortable: false },
-        { text: this.$t('Name'), value: 'name', sortable: false },
-        {
-          text: this.$t('PONO'),
-          value: 'pono',
-          sortable: false,
-        },
         { text: this.$t('VIN'), value: 'vin', sortable: false },
-        { text: this.$t('Ga Seq'), value: 'ga_seq', sortable: false },
-        {
-          text: this.$t('Color'),
-          value: 'color',
-          sortable: false,
-        },
-        {
-          text: this.$t('Level'),
-          value: 'levl',
-          sortable: false,
-        },
+        { text: this.$t('Tabno'), value: 'tabno', sortable: false },
+        { text: this.$t('Status'), value: 'status', sortable: false },
+        { text: this.$t('Sector'), value: 'sector', sortable: false },
+        { text: this.$t('Row'), value: 'row', sortable: false },
+        { text: this.$t('Tcd_date'), value: 'tcd_date', sortable: false },
         {
           text: 'Amallar',
           align: 'center',

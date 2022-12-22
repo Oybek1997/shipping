@@ -13,13 +13,10 @@ class Vehicle extends Model
 
     protected $fillable = [
         'vin',
+        'tabno',
+        'status',
         'sector',
         'row',
-        'tabno',
         'tcd_date',
-        'levl',
-        'partnum',
-        'partname',
-
     ];
 }

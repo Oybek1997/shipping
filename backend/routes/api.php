@@ -77,5 +77,6 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::get('warehouses', 'WarehouseController@warehouses');
     Route::post('android', 'VehicleController@android');
     Route::post('shipping-vehicles', 'VehicleController@vehicles');
+    Route::post('hello', 'VehicleController@vehicles');
     Route::post('users/usercreate', 'UserController@simpleusercreate');
 });

@@ -145,8 +145,8 @@ export default {
           title: this.$t('Vehicles'),
           icon: 'mdi-car-wrench',
           link: '/vehicles',
-          visible: false,
-          // visible: this.roles('admin')
+          //visible: false,
+           visible: this.roles('admin')
         },
         {
           title: this.$t('Details'),
