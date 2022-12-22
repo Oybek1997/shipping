@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('allFile', 'TestController@getAllFiles');
 
-Route::post('/login', 'UserController@login');
-
 Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 
     Route::post('details/get-excel', 'DetailController@getExcel');
@@ -78,7 +76,7 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::post('report-count3', 'OrderController@reportCount3');
     Route::get('warehouses', 'WarehouseController@warehouses');
     Route::post('android', 'VehicleController@android');
-    Route::post('shipping-vehicles', 'VehicleController@vehicles');
     Route::post('hello', 'VehicleController@vehicles');
     Route::post('users/usercreate', 'UserController@simpleusercreate');
 });
+    Route::post('shipping-vehicles', 'VehicleController@vehicles');
