@@ -22,16 +22,48 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login()
+    //Lat Login Function
+//    public function login()
+//    {
+//        if (Auth::attempt(['username' => request('username'), 'password' => request('password')])) {
+//            $user = Auth::user();
+//            $success['token'] = $user->createToken('MyApp')->accessToken;
+//            return response()->json(['success' => $success], $this->successStatus);
+//        } else {
+//            return response()->json(['error' => 'Unauthorised'], 401);
+//        }
+//    }
+
+
+    public function login(Request $request)
     {
-        if (Auth::attempt(['username' => request('username'), 'password' => request('password')])) {
-            $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
-        } else {
+        $auth = $request->header('Authorization');
+        $auth_array = explode(" ", $auth);
+        $un_pw = explode(":", base64_decode($auth_array[1]));
+        $login = $un_pw[0];
+        $password = $un_pw[1];
+
+        $user = Adldap::search()->findBy('sAMAccountname', $login);
+
+        if ($user){
+            $res['username'] = $user->samaccountname[0];
+            $distinguishedname = $user->distinguishedname[0];
+            $distinguishedname = substr($distinguishedname, strpos($distinguishedname, 'DC'), 1000);
+            $res['account_suffix'] = str_replace(',', '.', str_ireplace('dc=', '', $distinguishedname));
+        }else{
+            return response()->json(['error' => 'User not found'], 401);
+        }
+
+        $login_ad = Adldap::auth()->attempt($res['username'] . '@' . $res['account_suffix'], $password, $bindAsUser = true);
+
+        if ($login_ad){
+            return response()->json(['success' => 'OK'], $this->successStatus);
+        }else{
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
+
+
 
     //--------------------------------
     //    public function actionGetFullname($tabno)
