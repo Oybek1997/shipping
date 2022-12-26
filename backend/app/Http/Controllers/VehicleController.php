@@ -159,11 +159,11 @@ class VehicleController extends Controller
 
             //return $value;
 
-            //$vehicle = Vehicle::where('vin', $vin)->first();
+            $vehicle = Vehicle::where('vin', $vin)->where('tabno', $tabno)->where('tcd_date', $tcd_date)->first();
 
             //return $vehicle;
 
-            //if (!$vehicle) {
+            if (!$vehicle) {
                 $vehicle = new Vehicle();
                 $vehicle->vin = $vin;
                 $vehicle->tabno = $tabno;
@@ -173,7 +173,7 @@ class VehicleController extends Controller
                 $vehicle->tcd_date = $tcd_date;
                 $vehicle->deleted_at = Null;
                 $vehicle->save();
-            //}
+            }
         }
         //$allVehicles = Vehicle::get();
 
