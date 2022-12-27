@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Vehicle;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
 
@@ -143,8 +144,9 @@ class VehicleController extends Controller
 
     public function vehicles(Request $request)
     {
-
+       // return $request->all();
         $user = new UserController;
+        $user->login($request);
         $loginResponse = $user->login($request)->original;
 
         if (isset($loginResponse["error"])) {
@@ -283,4 +285,47 @@ class VehicleController extends Controller
         }
         return $response;
     }
+
+
+//deleteFunction
+    public function deleteFunction()
+    {
+//        $allVehicles=Vehicle::all();
+//        // dd($user);
+//         $allVehicles->truncate();
+
+        DB::table('vehicles')->delete();
+
+    }
+
+
+
+    public function getExcel(Request $request)
+    {
+//        return $request;
+        $page = $request->input('pagination.page');
+
+        $perPage = $request->input('pagination.itemsPerPage');
+//        return $page;
+        $details = Vehicle::select('*')
+            ->paginate($perPage, ['*'], 'page name', $page);
+        $excel = [];
+
+//        return $details;
+
+
+        foreach ($details as $key => $value) {
+            array_push($excel, (object)[
+                "№" => $key + 1 + $page * $perPage - $perPage,
+                "Vin" => $value->vin,
+                "Tabno" => $value->tabno,
+                "Status" => $value->status,
+                "Sector" => $value->sector,
+                "Row" => $value->row,
+                "Tcd_date" => $value->tcd_date,
+            ]);
+        }
+        return $excel;
+    }
+
 }

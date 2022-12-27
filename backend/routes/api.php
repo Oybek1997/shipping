@@ -77,6 +77,13 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::post('android', 'VehicleController@android');
     Route::post('hello', 'VehicleController@vehicles');
     Route::post('users/usercreate', 'UserController@simpleusercreate');
+
+
+    Route::post('delete-all', 'VehicleController@deleteFunction');
+
+    Route::post('vehicles/get-excel', 'VehicleController@getExcel');
+
+
 });
 Route::post('shipping-vehicles', 'VehicleController@vehicles');
 

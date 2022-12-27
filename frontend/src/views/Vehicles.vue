@@ -5,6 +5,8 @@
         {{ $t('Vehicles') }}
 
         <v-spacer></v-spacer>
+
+
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -16,6 +18,32 @@
           outlined
           dense
         ></v-text-field>
+
+
+
+        <v-btn
+            outlined
+            x-small
+            fab
+            @click="
+            getDetailExcel(1);
+            inventory_excel = [];
+          "
+            class="mr-2"
+        >
+          <v-icon>mdi-file-excel-outline</v-icon>
+        </v-btn>
+
+
+        <v-btn
+            @click="deleteFunction()"
+            style="background-color:red; color: white"
+            class="ml-8"
+        >
+          O'chirish
+        </v-btn>
+
+
       </v-card-title>
       <v-data-table
         :headers="headers"
@@ -50,6 +78,34 @@
           <v-icon color="error" @click="deleteVehicle(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
+
+
+      <v-dialog v-model="downloadExcel" hide-overlay persistent width="300">
+        <v-card>
+          <v-card-text class="py-1 px-3">
+            <v-btn
+                color="success"
+                class="mx-10"
+                @click="downloadExcel = false"
+                text
+            >
+              <download-excel
+                  :data="inventory_excel"
+                  :name="'Inv_ruyxati.xls'"
+              >
+                <span style="color: #4caf50">{{ $t("download") }}</span>
+                <v-icon color="success" height="20">mdi-download</v-icon>
+              </download-excel>
+            </v-btn>
+            <v-btn class color="error" @click="downloadExcel = false" icon>
+              <v-icon color="error" height="20">mdi-close</v-icon>
+            </v-btn>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+
+
+
       <v-dialog
         v-model="VehicleModal"
         persistent
@@ -122,6 +178,8 @@
 // import moment from 'moment';
 import Swal from 'sweetalert2';
 
+let axios = require("axios").default;
+
 export default {
   data() {
     return {
@@ -130,6 +188,7 @@ export default {
       search: '',
       VehicleModal: false,
       form: {},
+      inventory_excel: [],
       dataTableOptions: {
         page: 1,
         itemsPerPage: 50,
@@ -137,6 +196,7 @@ export default {
       page: 1,
       server_items_length: -1,
       from: 0,
+      downloadExcel: false,
     };
   },
   computed: {
@@ -258,7 +318,62 @@ export default {
     updatePerPage() {
       this.getVehicleList();
     },
+
+    getDetailExcel(page) {
+      let new_array = [];
+      this.loading = true;
+      axios
+          .post(this.$store.state.backend_url + "/api/vehicles/get-excel", {
+            filter: this.filter,
+            type: 1,
+            pagination: {
+              page: page,
+              itemsPerPage: 1000,
+            },
+          })
+
+
+
+          .then((response) => {
+            response.data.map((v, index) => {
+              new_array.push({
+                "№": index + page,
+                Vin: v.Vin,
+                Tabno: v.Tabno,
+                Status: v.Status,
+                Sector: v.Sector,
+                Row: v.Row,
+                Tcd_date: v.Tcd_date,
+              });
+              // console.log("This is :",v)
+            });
+            // new_array = response.data.data;
+
+            this.inventory_excel = this.inventory_excel.concat(new_array);
+            if (response.data.length == 1000) {
+              this.getDetailExcel(++page);
+            } else {
+              this.loading = false;
+              this.downloadExcel = true;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            this.loading = false;
+          });
+    },
+
+
+
+
+    deleteFunction() {
+      this.$axios
+          .post(this.$store.state.backend_url + '/api/delete-all')
+    },
   },
+
+
+
   mounted() {
     this.getVehicleList();
     document.title = this.$t('drawings');

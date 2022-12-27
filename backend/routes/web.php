@@ -17,3 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/updatemodel', 'TestController@updatemodelname');
+
+//Route::group(['middleware' => ['auth']], function () {
+//    Route::post('delete-all', 'VehicleController@deleteFunction');
+//});

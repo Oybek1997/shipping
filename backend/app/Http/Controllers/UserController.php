@@ -46,6 +46,9 @@ class UserController extends Controller
         $login = $un_pw[0];
         $password = $un_pw[1];
 
+       // return $login;
+
+        //dd($login);
         $user = Adldap::search()->findBy('sAMAccountname', $login);
 
         if ($user){
