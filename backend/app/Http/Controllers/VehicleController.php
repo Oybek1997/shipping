@@ -144,12 +144,12 @@ class VehicleController extends Controller
     public function vehicles(Request $request)
     {
 
-        $user = new UserController;
-        $loginResponse = $user->login($request)->original;
-
-        if (isset($loginResponse["error"])) {
-            return response()->json(['error' => $loginResponse["error"]], 401);
-        }
+//        $user = new UserController;
+//        $loginResponse = $user->login($request)->original;
+//
+//        if (isset($loginResponse["error"])) {
+//            return response()->json(['error' => $loginResponse["error"]], 401);
+//        }
 
         $data = $request->all();
 
