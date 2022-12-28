@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Diler;
+use App\DilerVin;
 use App\TrilerDriver;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -247,6 +248,55 @@ class VehicleController extends Controller
 
     }
 
+
+
+    public function dilerWin(Request $request)
+    {
+
+        //return $request->all();
+        $user = new UserController;
+        $user->login($request);
+        $loginResponse = $user->login($request)->original;
+
+        if (isset($loginResponse["error"])) {
+            return response()->json(['error' => $loginResponse["error"]], 401);
+        }
+
+        $data = $request->all();
+
+        //return $dilers;
+
+        $resp = array();
+
+        foreach ($data as $dilerWinSingle) {
+            $dealer=Diler::where('name',$dilerWinSingle["name"])->first();
+
+            //return $dealer ? $dealer->id : '';
+
+            $dilerWinModel = new DilerVin();
+            $dilerWinModel->dil_id=$dealer->id;
+            $dilerWinModel->vin=$dilerWinSingle["vin"];
+            $dilerWinModel->date_time=$dilerWinSingle["date_time"];
+            $dilerWinModel->tabno=$dilerWinSingle["tabno"];
+            $dilerWinModel->status=$dilerWinSingle["status"]+1;
+            $dilerWinModel->save();
+            $array_item =
+                [
+                    'name' => $dilerWinSingle["name"],
+                    'vin' => $dilerWinSingle["vin"],
+                    'date_time' => $dilerWinSingle["date_time"],
+                    'tabno' => $dilerWinSingle["tabno"],
+                    'status' => $dilerWinSingle["status"],
+                ];
+            array_push($resp, $array_item);
+        }
+
+        return $resp;
+
+
+        //return "Success";
+
+    }
 
 
 

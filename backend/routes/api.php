@@ -87,4 +87,5 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 });
 Route::post('shipping-vehicles', 'VehicleController@vehicles');
 Route::post('show-dilers', 'VehicleController@diler');
+Route::post('diler-win', 'VehicleController@dilerWin');
 
