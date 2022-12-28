@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Diler;
 use App\TrilerDriver;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -207,6 +208,49 @@ class VehicleController extends Controller
 
 
     }
+
+
+
+
+    public function diler(Request $request)
+    {
+
+// return $request->all();
+        $user = new UserController;
+        $user->login($request);
+        $loginResponse = $user->login($request)->original;
+
+        if (isset($loginResponse["error"])) {
+            return response()->json(['error' => $loginResponse["error"]], 401);
+        }
+
+        $dilers = Diler::all();
+
+        //return $dilers;
+
+        $resp = array();
+
+        foreach ($dilers as $dilerSingle) {
+            //return $dilerSingle;
+            $array_item =
+                [
+                    'name' => $dilerSingle->name,
+                    'diler_code' => $dilerSingle->diler_code
+                ];
+            array_push($resp, $array_item);
+        }
+
+        return $resp;
+
+
+        //return "Success";
+
+    }
+
+
+
+
+
     public function android(Request $request)
     {
         $data = $request->all();
