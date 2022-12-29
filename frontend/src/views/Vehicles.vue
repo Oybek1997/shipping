@@ -7,6 +7,31 @@
         <v-spacer></v-spacer>
 
 
+
+        <v-btn
+            @click="
+            getDetailExcel(1); inventory_excel = [];"
+            style="background-color:blue; color: white; margin-right: 20px"
+            class="ml-8"
+        >
+          Ecelga yuklash
+        </v-btn>
+
+
+
+<!--        <v-btn-->
+<!--            outlined-->
+<!--            x-small-->
+<!--            fab-->
+<!--            @click="-->
+<!--            getDetailExcel(1);-->
+<!--            inventory_excel = [];-->
+<!--          "-->
+<!--            class="mr-2"-->
+<!--        >-->
+<!--          <v-icon>mdi-file-excel-outline</v-icon>-->
+<!--        </v-btn>-->
+
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -21,18 +46,7 @@
 
 
 
-        <v-btn
-            outlined
-            x-small
-            fab
-            @click="
-            getDetailExcel(1);
-            inventory_excel = [];
-          "
-            class="mr-2"
-        >
-          <v-icon>mdi-file-excel-outline</v-icon>
-        </v-btn>
+
 
 
         <v-btn
@@ -367,9 +381,43 @@ export default {
 
 
     deleteFunction() {
-      this.$axios
-          .post(this.$store.state.backend_url + '/api/delete-all')
-    },
+      //   this.$axios
+      //       .post(this.$store.state.backend_url + '/api/delete-all')
+      // },
+
+      Swal.fire({
+        title: this.$t('Delete'),
+        text: this.$t('Delete Warning'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: this.$t('Delete All'),
+      }).then((result) => {
+        if (result.value) {
+          this.$axios
+              .post(
+                  this.$store.state.backend_url + '/api/delete-all'
+              )
+              .then((res) => {
+                console.log(res);
+                this.getVehicleList();
+                Swal.fire("O'chirildi!", this.$t('swal_deleted'), 'success');
+              })
+              .catch((err) => {
+                Swal.fire({
+                  icon: 'error',
+                  title: this.$t('swal_error_title'),
+                  text: this.$t('swal_error_text'),
+                  //footer: "<a href>Why do I have this issue?</a>"
+                });
+                console.log(err);
+              });
+        }
+      });
+
+
+    }
   },
 
 
