@@ -288,7 +288,7 @@ class VehicleController extends Controller
                     'tcd_date' => $dilerWinSingle["tcd_date"],
                     'tcd_time' => $dilerWinSingle["tcd_time"],
                     'tabno' => $dilerWinSingle["tabno"],
-                    'status' => $dilerWinSingle["status"],
+                    'status' => $dilerWinSingle["status"]+1,
                 ];
             array_push($resp, $array_item);
         }
