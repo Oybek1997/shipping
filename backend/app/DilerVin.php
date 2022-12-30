@@ -14,7 +14,8 @@ class DilerVin extends Model
     protected $fillable = [
         'dil_id',
         'vin',
-        'date_time',
+        'tcd_date',
+        'tcd_time',
         'tabno',
         'status',
     ];
