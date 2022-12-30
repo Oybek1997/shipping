@@ -276,19 +276,13 @@ class VehicleController extends Controller
             $dilerWinModel = new DilerVin();
             $dilerWinModel->dil_id=$dealer->id;
             $dilerWinModel->vin=$dilerWinSingle["vin"];
-            $dilerWinModel->tcd_date=$dilerWinSingle["tcd_date"];
             $dilerWinModel->tcd_time=$dilerWinSingle["tcd_time"];
             $dilerWinModel->tabno=$dilerWinSingle["tabno"];
-            $dilerWinModel->status=$dilerWinSingle["status"]+1;
             $dilerWinModel->save();
             $array_item =
                 [
                     'name' => $dilerWinSingle["name"],
                     'vin' => $dilerWinSingle["vin"],
-                    'tcd_date' => $dilerWinSingle["tcd_date"],
-                    'tcd_time' => $dilerWinSingle["tcd_time"],
-                    'tabno' => $dilerWinSingle["tabno"],
-                    'status' => $dilerWinSingle["status"]+1,
                 ];
             array_push($resp, $array_item);
         }
