@@ -3,11 +3,7 @@
     <v-card class="elevation-5">
       <v-card-title>
         {{ $t('Vehicles') }}
-
         <v-spacer></v-spacer>
-
-
-
         <v-btn
             @click="
             getDetailExcel(1); inventory_excel = [];"
@@ -16,9 +12,6 @@
         >
           Ecelga yuklash
         </v-btn>
-
-
-
 <!--        <v-btn-->
 <!--            outlined-->
 <!--            x-small-->
@@ -31,7 +24,6 @@
 <!--        >-->
 <!--          <v-icon>mdi-file-excel-outline</v-icon>-->
 <!--        </v-btn>-->
-
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -43,12 +35,6 @@
           outlined
           dense
         ></v-text-field>
-
-
-
-
-
-
         <v-btn
             @click="deleteFunction()"
             style="background-color:red; color: white"
@@ -56,8 +42,6 @@
         >
           O'chirish
         </v-btn>
-
-
       </v-card-title>
       <v-data-table
         :headers="headers"
@@ -80,7 +64,6 @@
         @update:page="updatePage"
         @update:items-per-page="updatePerPage"
       >
-
         <template v-slot:item.id="{ item }">{{
           vehicles.map((v) => v.id).indexOf(item.id) + from
         }}</template>
@@ -92,8 +75,6 @@
           <v-icon color="error" @click="deleteVehicle(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
-
-
       <v-dialog v-model="downloadExcel" hide-overlay persistent width="300">
         <v-card>
           <v-card-text class="py-1 px-3">
@@ -117,9 +98,6 @@
           </v-card-text>
         </v-card>
       </v-dialog>
-
-
-
       <v-dialog
         v-model="VehicleModal"
         persistent
@@ -164,7 +142,6 @@
               </v-row>
             </v-container>
           </v-card-text>
-
           <v-card-actions class="pt-0">
             <v-spacer></v-spacer>
             <v-btn color="green" dark @click="save">{{ $t('save') }}</v-btn>
@@ -188,12 +165,8 @@
   </div>
 </template>
 <script>
-// const moment = require("moment");
-// import moment from 'moment';
 import Swal from 'sweetalert2';
-
 let axios = require("axios").default;
-
 export default {
   data() {
     return {
@@ -345,9 +318,6 @@ export default {
               itemsPerPage: 1000,
             },
           })
-
-
-
           .then((response) => {
             response.data.map((v, index) => {
               new_array.push({
@@ -359,10 +329,7 @@ export default {
                 Row: v.Row,
                 Tcd_date: v.Tcd_date,
               });
-              // console.log("This is :",v)
             });
-            // new_array = response.data.data;
-
             this.inventory_excel = this.inventory_excel.concat(new_array);
             if (response.data.length == 1000) {
               this.getDetailExcel(++page);
@@ -376,15 +343,7 @@ export default {
             this.loading = false;
           });
     },
-
-
-
-
     deleteFunction() {
-      //   this.$axios
-      //       .post(this.$store.state.backend_url + '/api/delete-all')
-      // },
-
       Swal.fire({
         title: this.$t('Delete'),
         text: this.$t('Delete Warning'),
@@ -419,9 +378,6 @@ export default {
 
     }
   },
-
-
-
   mounted() {
     this.getVehicleList();
     document.title = this.$t('drawings');
