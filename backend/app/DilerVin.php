@@ -17,4 +17,9 @@ class DilerVin extends Model
         'tcd_time',
         'tabno',
     ];
+
+    public function diler()
+    {
+        return $this->belongsTo(Diler::class, 'dil_id', 'id');
+    }
 }

@@ -14,4 +14,9 @@ class Diler extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function dilervins()
+    {
+        return $this->hasOne('App\DilerVin', 'dil_id', 'dil_id');
+    }
 }

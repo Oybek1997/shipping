@@ -40,6 +40,12 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::get('apifive', 'VehicleDetailController@apiFive');
 
     Route::post('getVehicle', 'VehicleController@index');
+    Route::post('getDilerWin', 'DilerWinController@index');
+
+    Route::post('getDiler', 'DilerController@index');
+    Route::delete('dilers/delete/{id}', 'DilerController@destroy');
+
+
     Route::post('vehicles/update', 'VehicleController@update');
     Route::delete('vehicles/delete/{id}', 'VehicleController@destroy');
     Route::post('okVin', 'VehicleController@okVin');
@@ -80,6 +86,8 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 
 
     Route::post('delete-all', 'VehicleController@deleteFunction');
+    Route::post('dilers/delete-all', 'DilerController@deleteFunction');
+//    Route::post('delete-all', 'VehicleController@deleteFunction');
 
     Route::post('vehicles/get-excel', 'VehicleController@getExcel');
 

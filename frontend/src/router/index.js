@@ -103,6 +103,26 @@ const routes = [
     ],
   },
   {
+    path: '/dilerwins',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/DilerWins'),
+      },
+    ],
+  },
+  {
+    path: '/dilers',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/Dilers'),
+      },
+    ],
+  },
+  {
     path: '/details',
     component: Layout,
     children: [
