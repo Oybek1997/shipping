@@ -176,13 +176,7 @@ export default {
         { text: this.$t('tr'), value: 'id', sortable: false },
         { text: this.$t('Name'), value: 'name', sortable: false },
         { text: this.$t('Diler Code'), value: 'diler_code', sortable: false },
-        {
-          text: 'Amallar',
-          align: 'center',
-          value: 'options',
-          sortable: false,
-          width: 80,
-        },
+
       ];
     },
     screenHeight() {
