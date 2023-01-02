@@ -4,14 +4,14 @@
       <v-card-title>
         {{ $t('Diler Wins') }}
         <v-spacer></v-spacer>
-        <v-btn
-            @click="
-            getDetailExcel(1); inventory_excel = [];"
-            style="background-color:blue; color: white; margin-right: 20px"
-            class="ml-8"
-        >
-          Ecelga yuklash
-        </v-btn>
+<!--        <v-btn-->
+<!--            @click="-->
+<!--            getDetailExcel(1); inventory_excel = [];"-->
+<!--            style="background-color:blue; color: white; margin-right: 20px"-->
+<!--            class="ml-8"-->
+<!--        >-->
+<!--          Ecelga yuklash-->
+<!--        </v-btn>-->
 <!--        <v-btn-->
 <!--            outlined-->
 <!--            x-small-->
@@ -35,13 +35,13 @@
           outlined
           dense
         ></v-text-field>
-        <v-btn
-            @click="deleteFunction()"
-            style="background-color:red; color: white"
-            class="ml-8"
-        >
-          O'chirish
-        </v-btn>
+<!--        <v-btn-->
+<!--            @click="deleteFunction()"-->
+<!--            style="background-color:red; color: white"-->
+<!--            class="ml-8"-->
+<!--        >-->
+<!--          O'chirish-->
+<!--        </v-btn>-->
       </v-card-title>
       <v-data-table
         :headers="headers"
