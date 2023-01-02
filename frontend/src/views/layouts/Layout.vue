@@ -128,12 +128,12 @@ export default {
     MenuItems() {
       return [
         { title: this.$t('main_page'), icon: 'mdi-home-outline', link: '/' },
-        {
-          title: this.$t('Excel'),
-          icon: 'mdi-file-excel',
-          link: '/excel',
-          visible: this.roles('admin') || this.roles('supply'),
-        },
+        // {
+        //   title: this.$t('Excel'),
+        //   icon: 'mdi-file-excel',
+        //   link: '/excel',
+        //   visible: this.roles('admin') || this.roles('supply'),
+        // },
 
         {
           title: this.$t('Table'),
@@ -143,39 +143,39 @@ export default {
         },
         {
           title: this.$t('Vehicles'),
-          icon: 'mdi-car-wrench',
+          icon: 'mdi-car',
           link: '/vehicles',
           //visible: false,
            visible: this.roles('admin')
         },
         {
           title: this.$t('Dilers'),
-          icon: 'mdi-car-wrench',
+          icon: 'mdi-home-outline',
           link: '/dilers',
           //visible: false,
           visible: this.roles('admin')
         },
         {
           title: this.$t('Diler Wins'),
-          icon: 'mdi-car-wrench',
+          icon: 'mdi-file-table',
           link: '/dilerwins',
           //visible: false,
           visible: this.roles('admin')
         },
         {
           title: this.$t('Diler Users'),
-          icon: 'mdi-car-wrench',
+          icon: 'mdi-account',
           link: '/dilerusers',
           //visible: false,
           visible: this.roles('admin')
         },
-        {
-          title: this.$t('Details'),
-          icon: 'mdi-hammer-wrench',
-          link: '/details',
-          // visible: false,
-          visible: this.roles('admin')
-        },
+        // {
+        //   title: this.$t('Details'),
+        //   icon: 'mdi-hammer-wrench',
+        //   link: '/details',
+        //   // visible: false,
+        //   visible: this.roles('admin')
+        // },
         {
           title: this.$t('user.index'),
           icon: 'mdi-account-group',
