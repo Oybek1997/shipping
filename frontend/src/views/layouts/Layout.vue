@@ -163,6 +163,13 @@ export default {
           visible: this.roles('admin')
         },
         {
+          title: this.$t('Diler Users'),
+          icon: 'mdi-car-wrench',
+          link: '/dilerusers',
+          //visible: false,
+          visible: this.roles('admin')
+        },
+        {
           title: this.$t('Details'),
           icon: 'mdi-hammer-wrench',
           link: '/details',

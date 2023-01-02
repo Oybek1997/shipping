@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::post('getDiler', 'DilerController@index');
     Route::delete('dilers/delete/{id}', 'DilerController@destroy');
 
+    Route::post('getDilerUser', 'DilerUserController@index');
+
 
     Route::post('vehicles/update', 'VehicleController@update');
     Route::delete('vehicles/delete/{id}', 'VehicleController@destroy');
