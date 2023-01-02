@@ -458,6 +458,7 @@ export default {
   },
   mounted() {
     this.getUserlist();
+    this.getRoles();
     document.title = this.$t('user.index');
   },
 };
