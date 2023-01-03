@@ -89,13 +89,12 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 
     Route::post('delete-all', 'VehicleController@deleteFunction');
     Route::post('dilers/delete-all', 'DilerController@deleteFunction');
-//    Route::post('delete-all', 'VehicleController@deleteFunction');
+    //    Route::post('delete-all', 'VehicleController@deleteFunction');
+    Route::get('getMainData', 'DilerUserController@getMaindata');
+    Route::post('dillerUser/add', 'DilerUserController@add');
 
     Route::post('vehicles/get-excel', 'VehicleController@getExcel');
-
-
 });
 Route::post('shipping-vehicles', 'VehicleController@vehicles');
 Route::post('show-dilers', 'VehicleController@diler');
 Route::post('diler-win', 'VehicleController@dilerWin');
-

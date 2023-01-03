@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Diler;
 use App\DilerVin;
 use App\DilerUser;
+use App\User;
 use App\TrilerDriver;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -31,9 +32,9 @@ class DilerUserController extends Controller
             $vehicle->where(function ($q) use ($content) {
                 $q->where('vin', 'like', '%' . $content . '%')
                     ->orWhere('tabno', 'like', '%' . $content . '%');
-                    //->orWhere('status', 'like', '%' . $content . '%')
-                   // ->orWhere('sector', 'like', '%' . $content . '%');
-                    //->orWhere('tabno', 'like', '%' . $content . '%');
+                //->orWhere('status', 'like', '%' . $content . '%')
+                // ->orWhere('sector', 'like', '%' . $content . '%');
+                //->orWhere('tabno', 'like', '%' . $content . '%');
             });
         }
         // dd(gettype($vehicle));
@@ -79,22 +80,46 @@ class DilerUserController extends Controller
 
     public function __construct()
     {
-        $this->base_url = env("BASE_URL","http://test-dy.uzautomotors.com/api/send_data");
+        $this->base_url = env("BASE_URL", "http://test-dy.uzautomotors.com/api/send_data");
 
         View::share('base_url', $this->base_url);
-
     }
 
 
-//deleteFunction
+    //deleteFunction
     public function deleteFunction()
     {
-//        $allVehicles=Vehicle::all();
-//        // dd($user);
-//         $allVehicles->truncate();
+        //        $allVehicles=Vehicle::all();
+        //        // dd($user);
+        //         $allVehicles->truncate();
 
         DB::table('vehicles')->delete();
-
     }
 
+    public function getMaindata()
+    {
+        $dilers = Diler::get();
+        $users = User::get();
+        // return $users;
+        return ['dillers' => $dilers, 'users' => $users];
+    }
+    public function add(Request $request)
+    {
+        $dillers = $request['dillers'];
+        $user = $request['user'];
+        // return $user;
+
+        foreach ($dillers as $key => $diller) {
+            $dillerUser = DilerUser::where('diler_id', $diller)->where('user_id', $user)->first();
+
+            if (!$dillerUser) {
+                $dillerUser = new DilerUser();
+                $dillerUser->diler_id = $diller;
+                $dillerUser->user_id = $user;
+                $dillerUser->save();
+            }
+        }
+
+        return $dillerUser;
+    }
 }

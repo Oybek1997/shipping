@@ -4,44 +4,13 @@
       <v-card-title>
         {{ $t('Diler Wins') }}
         <v-spacer></v-spacer>
-<!--        <v-btn-->
-<!--            @click="-->
-<!--            getDetailExcel(1); inventory_excel = [];"-->
-<!--            style="background-color:blue; color: white; margin-right: 20px"-->
-<!--            class="ml-8"-->
-<!--        >-->
-<!--          Ecelga yuklash-->
-<!--        </v-btn>-->
-<!--        <v-btn-->
-<!--            outlined-->
-<!--            x-small-->
-<!--            fab-->
-<!--            @click="-->
-<!--            getDetailExcel(1);-->
-<!--            inventory_excel = [];-->
-<!--          "-->
-<!--            class="mr-2"-->
-<!--        >-->
-<!--          <v-icon>mdi-file-excel-outline</v-icon>-->
-<!--        </v-btn>-->
-<!--        <v-text-field-->
-<!--          v-model="search"-->
-<!--          append-icon="mdi-magnify"-->
-<!--          :label="$t('search')"-->
-<!--          single-line-->
-<!--          hide-details-->
-<!--          clearable-->
-<!--          @keyup.native.enter="getVehicleList"-->
-<!--          outlined-->
-<!--          dense-->
-<!--        ></v-text-field>-->
-<!--        <v-btn-->
-<!--            @click="deleteFunction()"-->
-<!--            style="background-color:red; color: white"-->
-<!--            class="ml-8"-->
-<!--        >-->
-<!--          O'chirish-->
-<!--        </v-btn>-->
+        <v-btn
+          @click="attachUser()"
+          style="background-color: rgb(51, 122, 183); color: white"
+          class="ml-8"
+        >
+          User biriktirish
+        </v-btn>
       </v-card-title>
       <v-data-table
         :headers="headers"
@@ -79,16 +48,13 @@
         <v-card>
           <v-card-text class="py-1 px-3">
             <v-btn
-                color="success"
-                class="mx-10"
-                @click="downloadExcel = false"
-                text
+              color="success"
+              class="mx-10"
+              @click="downloadExcel = false"
+              text
             >
-              <download-excel
-                  :data="inventory_excel"
-                  :name="'Inv_ruyxati.xls'"
-              >
-                <span style="color: #4caf50">{{ $t("download") }}</span>
+              <download-excel :data="inventory_excel" :name="'Inv_ruyxati.xls'">
+                <span style="color: #4caf50">{{ $t('download') }}</span>
                 <v-icon color="success" height="20">mdi-download</v-icon>
               </download-excel>
             </v-btn>
@@ -99,16 +65,22 @@
         </v-card>
       </v-dialog>
       <v-dialog
-        v-model="VehicleModal"
+        v-model="AttachUserModal"
         persistent
         max-width="50%"
-        @keydown.esc="UserModal = false"
+        @keydown.esc="AttachUserModal = false"
       >
         <v-card>
           <v-card-title>
-            <span class="headline">{{ $t('Edit Vehicle') }}</span>
+            <span class="headline">{{ $t('User biriktirish') }}</span>
             <v-spacer></v-spacer>
-            <v-btn color="red" x-small fab class @click="VehicleModal = false">
+            <v-btn
+              color="red"
+              x-small
+              fab
+              class
+              @click="AttachUserModal = false"
+            >
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-card-title>
@@ -116,20 +88,29 @@
             <v-container>
               <v-row>
                 <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Name') }}</label>
-                  <v-text-field v-model="form.name" dense></v-text-field>
+                  <v-autocomplete
+                    v-model="selectedDiller"
+                    :items="dillersList"
+                    outlined
+                    dense
+                    chips
+                    item-value="id"
+                    item-text="name"
+                    small-chips
+                    label="Ombor"
+                    multiple
+                  ></v-autocomplete>
                 </v-col>
                 <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Vin') }}</label>
-                  <v-text-field v-model="form.vin" dense></v-text-field>
-                </v-col>
-                <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Tabno') }}</label>
-                  <v-text-field v-model="form.ga_seq" dense></v-text-field>
-                </v-col>
-                <v-col class="pt-0" cols="12">
-                  <label>{{ $t('Tcd_date') }}</label>
-                  <v-text-field v-model="form.tcd_date" dense></v-text-field>
+                  <v-autocomplete
+                    v-model="selectedUser"
+                    :items="usersList"
+                    item-value="id"
+                    item-text="name"
+                    outlined
+                    dense
+                    label="User"
+                  ></v-autocomplete>
                 </v-col>
               </v-row>
             </v-container>
@@ -158,15 +139,19 @@
 </template>
 <script>
 import Swal from 'sweetalert2';
-let axios = require("axios").default;
+let axios = require('axios').default;
 export default {
   data() {
     return {
       loading: false,
       vehicles: [],
       search: '',
-      VehicleModal: false,
+      AttachUserModal: false,
       form: {},
+      dillersList: {},
+      usersList: {},
+      selectedDiller: [],
+      selectedUser: [],
       inventory_excel: [],
       dataTableOptions: {
         page: 1,
@@ -220,10 +205,28 @@ export default {
           //   });
           this.loading = false;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
           this.loading = false;
         });
+    },
+    getMainData() {
+      this.loading = true;
+      this.$axios
+        .get(this.$store.state.backend_url + '/api/getMainData')
+        .then((res) => {
+          this.dillersList = res.data.dillers;
+          this.usersList = res.data.users;
+          // console.log(this.dillersList);
+          this.loading = false;
+        })
+        .catch(function (error) {
+          console.log(error);
+          this.loading = false;
+        });
+    },
+    attachUser() {
+      this.AttachUserModal = true;
     },
     editVehicle(item) {
       this.VehicleModal = true;
@@ -231,10 +234,13 @@ export default {
     },
     save() {
       this.$axios
-        .post(this.$store.state.backend_url + '/api/vehicles/update', this.form)
+        .post(this.$store.state.backend_url + '/api/dillerUser/add', {
+          dillers: this.selectedDiller,
+          user: this.selectedUser,
+        })
         .then(() => {
           this.getVehicleList();
-          this.VehicleModal = false;
+          this.AttachUserModal = false;
           const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -298,38 +304,38 @@ export default {
       let new_array = [];
       this.loading = true;
       axios
-          .post(this.$store.state.backend_url + "/api/vehicles/get-excel", {
-            filter: this.filter,
-            type: 1,
-            pagination: {
-              page: page,
-              itemsPerPage: 1000,
-            },
-          })
-          .then((response) => {
-            response.data.map((v, index) => {
-              new_array.push({
-                "№": index + page,
-                Vin: v.Vin,
-                Tabno: v.Tabno,
-                Status: v.Status,
-                Sector: v.Sector,
-                Row: v.Row,
-                Tcd_date: v.Tcd_date,
-              });
+        .post(this.$store.state.backend_url + '/api/vehicles/get-excel', {
+          filter: this.filter,
+          type: 1,
+          pagination: {
+            page: page,
+            itemsPerPage: 1000,
+          },
+        })
+        .then((response) => {
+          response.data.map((v, index) => {
+            new_array.push({
+              '№': index + page,
+              Vin: v.Vin,
+              Tabno: v.Tabno,
+              Status: v.Status,
+              Sector: v.Sector,
+              Row: v.Row,
+              Tcd_date: v.Tcd_date,
             });
-            this.inventory_excel = this.inventory_excel.concat(new_array);
-            if (response.data.length == 1000) {
-              this.getDetailExcel(++page);
-            } else {
-              this.loading = false;
-              this.downloadExcel = true;
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            this.loading = false;
           });
+          this.inventory_excel = this.inventory_excel.concat(new_array);
+          if (response.data.length == 1000) {
+            this.getDetailExcel(++page);
+          } else {
+            this.loading = false;
+            this.downloadExcel = true;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.loading = false;
+        });
     },
     deleteFunction() {
       Swal.fire({
@@ -343,31 +349,28 @@ export default {
       }).then((result) => {
         if (result.value) {
           this.$axios
-              .post(
-                  this.$store.state.backend_url + '/api/delete-all'
-              )
-              .then((res) => {
-                console.log(res);
-                this.getVehicleList();
-                Swal.fire("O'chirildi!", this.$t('swal_deleted'), 'success');
-              })
-              .catch((err) => {
-                Swal.fire({
-                  icon: 'error',
-                  title: this.$t('swal_error_title'),
-                  text: this.$t('swal_error_text'),
-                  //footer: "<a href>Why do I have this issue?</a>"
-                });
-                console.log(err);
+            .post(this.$store.state.backend_url + '/api/delete-all')
+            .then((res) => {
+              console.log(res);
+              this.getVehicleList();
+              Swal.fire("O'chirildi!", this.$t('swal_deleted'), 'success');
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: 'error',
+                title: this.$t('swal_error_title'),
+                text: this.$t('swal_error_text'),
+                //footer: "<a href>Why do I have this issue?</a>"
               });
+              console.log(err);
+            });
         }
       });
-
-
-    }
+    },
   },
   mounted() {
     this.getVehicleList();
+    this.getMainData();
     document.title = this.$t('drawings');
   },
 };
