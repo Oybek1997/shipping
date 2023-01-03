@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Diler;
 use App\DilerVin;
-use App\DilUser;
+use App\DilerUser;
 use App\TrilerDriver;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -25,7 +25,7 @@ class DilerUserController extends Controller
         $page = $request->input('pagination')['page'];
         $itemsPerPage = $request->input('pagination')['itemsPerPage'];
 
-        $vehicle = DilUser::whereNull('deleted_at')->with('user')->with('diler')
+        $vehicle = DilerUser::whereNull('deleted_at')->with('user')->with('diler')
             ->orderByDesc('id');
         if ($content) {
             $vehicle->where(function ($q) use ($content) {

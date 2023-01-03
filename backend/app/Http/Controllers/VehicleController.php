@@ -31,7 +31,7 @@ class VehicleController extends Controller
                     ->orWhere('tabno', 'like', '%' . $content . '%')
                     ->orWhere('status', 'like', '%' . $content . '%')
                     ->orWhere('sector', 'like', '%' . $content . '%');
-                    //->orWhere('tabno', 'like', '%' . $content . '%');
+                //->orWhere('tabno', 'like', '%' . $content . '%');
             });
         }
         // dd(gettype($vehicle));
@@ -146,7 +146,7 @@ class VehicleController extends Controller
 
     public function vehicles(Request $request)
     {
-       // return $request->all();
+        // return $request->all();
         $user = new UserController;
         $user->login($request);
         $loginResponse = $user->login($request)->original;
@@ -215,24 +215,15 @@ class VehicleController extends Controller
 
     public function diler(Request $request)
     {
-
-// return $request->all();
         $user = new UserController;
-        $user->login($request);
-        $loginResponse = $user->login($request)->original;
-
+        $result = $user->login($request);
+        $loginResponse = $result->original;
         if (isset($loginResponse["error"])) {
             return response()->json(['error' => $loginResponse["error"]], 401);
         }
-
-        $dilers = Diler::all();
-
-        //return $dilers;
-
+        $dilers = $loginResponse['dilers'];
         $resp = array();
-
         foreach ($dilers as $dilerSingle) {
-            //return $dilerSingle;
             $array_item =
                 [
                     'name' => $dilerSingle->name,
@@ -240,11 +231,7 @@ class VehicleController extends Controller
                 ];
             array_push($resp, $array_item);
         }
-
         return $resp;
-
-
-        //return "Success";
 
     }
 

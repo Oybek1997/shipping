@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Adldap\Laravel\Facades\Adldap;
+use App\Diler;
 use App\Imports\UsersImport;
 use App\Role;
 use Illuminate\Http\Request;
@@ -46,9 +47,6 @@ class UserController extends Controller
         $login = $un_pw[0];
         $password = $un_pw[1];
 
-       // return $login;
-
-        //dd($login);
         $user = Adldap::search()->findBy('sAMAccountname', $login);
 
         if ($user){
@@ -63,7 +61,11 @@ class UserController extends Controller
         $login_ad = Adldap::auth()->attempt($res['username'] . '@' . $res['account_suffix'], $password, $bindAsUser = true);
 
         if ($login_ad){
-            return response()->json(['success' => 'OK'], $this->successStatus);
+            $username = $res['username'];
+            $dilers = Diler::whereHas('users', function($q) use($username){
+                $q->where('username', $username);
+            })->get();
+            return response()->json(['success' => 'OK', 'dilers' => $dilers], $this->successStatus);
         }else{
             return response()->json(['error' => 'Unauthorised'], 401);
         }
