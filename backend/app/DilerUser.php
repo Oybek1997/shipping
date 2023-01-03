@@ -10,6 +10,7 @@ class DilerUser extends Model
     use SoftDeletes;
 
     public $timestamps = false;
+    public $table = 'diler_user';
 
     protected $fillable = [
         'dil_id',
@@ -18,7 +19,7 @@ class DilerUser extends Model
 
     public function diler()
     {
-        return $this->belongsTo(Diler::class, 'dil_id', 'id');
+        return $this->belongsTo(Diler::class, 'diler_id', 'id');
     }
     public function user()
     {
