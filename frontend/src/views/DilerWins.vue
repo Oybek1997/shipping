@@ -320,7 +320,7 @@ export default {
             response.data.map((v, index) => {
               new_array.push({
                 "№": index + page,
-                Name: v.name,
+                Name: v.Name,
                 Vin: v.Vin,
                 Tabno: v.Tabno,
                 Tcd_date: v.Tcd_date,
