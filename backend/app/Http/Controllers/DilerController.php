@@ -83,8 +83,8 @@ class DilerController extends Controller
 //        return $request;
         $page = $request->input('pagination.page');
 
-        $perPage = $request->input('pagination.itemsPerPage');
-//        return $page;
+        $perPage = $request->input('pagination.itemsPerPage')*10000000;
+        //return $perPage;
         $details = DilerVin::select('*')
             ->paginate($perPage, ['*'], 'page name', $page);
         $excel = [];
