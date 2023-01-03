@@ -5,6 +5,8 @@
     <file url="file://$USER_HOME$/Downloads/Filtered/diler_vins.sql" dialect="MySQL" />
     <file url="file://$USER_HOME$/Downloads/Filtered/dilers (1).sql" dialect="MySQL" />
     <file url="file://$USER_HOME$/Downloads/Raw/dil_users (2).sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/Raw/diler_vins.sql" dialect="MySQL" />
+    <file url="file://$USER_HOME$/Downloads/Raw/dilers (1).sql" dialect="MySQL" />
     <file url="file://$USER_HOME$/Downloads/Raw/users.sql" dialect="MySQL" />
   </component>
 </project>

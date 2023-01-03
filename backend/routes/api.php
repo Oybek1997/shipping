@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 //    Route::post('delete-all', 'VehicleController@deleteFunction');
 
     Route::post('vehicles/get-excel', 'VehicleController@getExcel');
+    Route::post('dilers/get-excel', 'DilerController@getExcel');
 
 
 });

@@ -257,15 +257,26 @@ class VehicleController extends Controller
 
         foreach ($data as $dilerWinSingle) {
             $dealer=Diler::where('name',$dilerWinSingle["name"])->first();
+           // return $dilerWinSingle["name"];
 
-            //return $dealer ? $dealer->id : '';
 
+            $dil_id = $dealer->id;
+            $vin = $dilerWinSingle['vin'];
+            $tcd_time = $dilerWinSingle['tcd_time'];
+            $tabno = $dilerWinSingle['tabno'];
+
+           // return $dil_id;
+
+            $vehicle = DilerVin::where('dil_id', $dil_id)->where('vin', $vin)->where('tcd_time', $tcd_time)->where('tabno', $tabno)->first();
+
+            if (!$vehicle){
             $dilerWinModel = new DilerVin();
             $dilerWinModel->dil_id=$dealer->id;
             $dilerWinModel->vin=$dilerWinSingle["vin"];
             $dilerWinModel->tcd_time=$dilerWinSingle["tcd_time"];
             $dilerWinModel->tabno=$dilerWinSingle["tabno"];
             $dilerWinModel->save();
+            }
             $array_item =
                 [
                     'name' => $dilerWinSingle["name"],

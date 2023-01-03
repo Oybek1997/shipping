@@ -4,6 +4,14 @@
       <v-card-title>
         {{ $t('Diler Wins') }}
         <v-spacer></v-spacer>
+        <v-btn
+            @click="
+            getDetailExcel(1); inventory_excel = [];"
+            style="background-color:blue; color: white; margin-right: 20px"
+            class="ml-8"
+        >
+          Ecelga yuklash
+        </v-btn>
 <!--        <v-btn-->
 <!--            @click="-->
 <!--            getDetailExcel(1); inventory_excel = [];"-->
@@ -86,7 +94,7 @@
             >
               <download-excel
                   :data="inventory_excel"
-                  :name="'Inv_ruyxati.xls'"
+                  :name="'Diler_wins.xls'"
               >
                 <span style="color: #4caf50">{{ $t("download") }}</span>
                 <v-icon color="success" height="20">mdi-download</v-icon>
@@ -300,7 +308,7 @@ export default {
       let new_array = [];
       this.loading = true;
       axios
-          .post(this.$store.state.backend_url + "/api/vehicles/get-excel", {
+          .post(this.$store.state.backend_url + "/api/dilers/get-excel", {
             filter: this.filter,
             type: 1,
             pagination: {
@@ -312,11 +320,9 @@ export default {
             response.data.map((v, index) => {
               new_array.push({
                 "№": index + page,
+                Name: v.name,
                 Vin: v.Vin,
                 Tabno: v.Tabno,
-                Status: v.Status,
-                Sector: v.Sector,
-                Row: v.Row,
                 Tcd_date: v.Tcd_date,
               });
             });
