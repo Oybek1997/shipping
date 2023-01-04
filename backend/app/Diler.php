@@ -17,7 +17,7 @@ class Diler extends Model
 
     public function dilervins()
     {
-        return $this->hasOne('App\DilerVin', 'dil_id', 'dil_id');
+        return $this->hasOne('App\DilerVin', 'dil_id', 'id');
     }
 
     public function users()

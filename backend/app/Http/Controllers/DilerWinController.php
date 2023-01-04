@@ -40,6 +40,13 @@ class DilerWinController extends Controller
         // $model = Test::paginate($itemsPerPage == '-1' ? 1000 : $itemsPerPage, ['*'], 'page name', $page);
         // return $model;
     }
+    public function dillersdata()
+    {
+        $test=Diler::select()
+            ->withCount('dilervins As Count')
+            ->get();
+        return $test;
+    }
     public function update(Request $request)
     {
         $id = $request['id'];
@@ -418,5 +425,7 @@ class DilerWinController extends Controller
         }
         return $excel;
     }
+
+
 
 }

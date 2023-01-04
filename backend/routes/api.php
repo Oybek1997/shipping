@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set("Asia/Tashkent");
 
+use App\Http\Controllers\DilerWinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +96,7 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
 
     Route::post('vehicles/get-excel', 'VehicleController@getExcel');
     Route::post('dilers/get-excel', 'DilerController@getExcel');
+    Route::get('dillersdata', [DilerWinController::class, 'dillersdata']);
 
 
 });

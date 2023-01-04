@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import vuetify from './plugins/vuetify';
 import '@/assets/css/style.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
