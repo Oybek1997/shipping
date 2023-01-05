@@ -27,7 +27,6 @@
 
 </div>
 </template>
-
 <script>
 let axios = require("axios").default;
 export default {
