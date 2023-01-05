@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::get('dillersdata', 'DilerWinController@dillersdata');
     Route::get('datadate', 'DilerWinController@datedatafc');
 });
+
 Route::post('shipping-vehicles', 'VehicleController@vehicles');
 Route::post('show-dilers', 'VehicleController@diler');
 Route::post('diler-win', 'VehicleController@dilerWin');
