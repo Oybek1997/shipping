@@ -171,14 +171,14 @@ export default {
         },
         {
           title: this.$t('Date Statistics'),
-          icon: 'mdi-calendar',
+          icon: 'mdi-calendar-clock',
           link: '/statisticstwo',
           //visible: false,
           visible: this.roles('admin')
         },
         {
-          title: this.$t('User Statistics'),
-          icon: 'mdi-calendar',
+          title: this.$t('Users Statistics'),
+          icon: 'mdi-face',
           link: '/statisticsthree',
           //visible: false,
           visible: this.roles('admin')
