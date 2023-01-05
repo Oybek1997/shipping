@@ -267,7 +267,7 @@ class VehicleController extends Controller
 
            // return $dil_id;
 
-            $vehicle = DilerVin::where('dil_id', $dil_id)->where('vin', $vin)->where('tcd_time', $tcd_time)->where('tabno', $tabno)->first();
+            $vehicle = DilerVin::where('vin', $vin)->first();
 
             if (!$vehicle){
             $dilerWinModel = new DilerVin();
