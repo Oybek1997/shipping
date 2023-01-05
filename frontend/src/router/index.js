@@ -143,6 +143,16 @@ const routes = [
     ],
   },
   {
+    path: '/statisticsthree',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('../views/Statisticsthree.vue'),
+      },
+    ],
+  },
+  {
     path: '/dilers',
     component: Layout,
     children: [

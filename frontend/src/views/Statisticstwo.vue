@@ -1,5 +1,13 @@
 <template>
   <div class="container-fluid mt-5">
+    <v-footer padless>
+  <v-col
+    class="text-center"
+    cols="12"
+  >
+  <h5>Умумий микдор — {{ server_items_length }}</h5>
+  </v-col>
+</v-footer>
   <table class="table table-bordered">
   <thead>
     <tr>
@@ -16,14 +24,6 @@
     </tr>
   </tbody>
 </table>
-<v-footer padless>
-  <v-col
-    class="text-center"
-    cols="12"
-  >
-  <h5>Умумий микдор — {{ server_items_length }}</h5>
-  </v-col>
-</v-footer>
 
 </div>
 </template>

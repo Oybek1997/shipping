@@ -51,6 +51,11 @@ class DilerWinController extends Controller
         $datadate = DB::select('SELECT SUBSTRING(tcd_time,1,10) sanasi, count(id) soni FROM diler_vins group by sanasi');
         return $datadate;
     }
+    public function usersdatafc()
+    {
+        $datausers = DB::select('select u.name, u.tbn,emp.ct from users u inner join (SELECT tabno, count(id) ct FROM diler_vins group by tabno) emp on emp.tabno=u.username order by ct desc');
+        return $datausers;
+    }
 
     public function update(Request $request)
     {
