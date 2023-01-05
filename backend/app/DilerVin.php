@@ -9,7 +9,7 @@ class DilerVin extends Model
 {
     use SoftDeletes;
 
-    public $timestamps = false;
+//    public $timestamps = false;
 
     protected $fillable = [
         'dil_id',
