@@ -186,7 +186,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/oybek/Downloads/ga04_localhost-2023_01_04_12_44_02-dump.sql",
+    "last_opened_file_path": "/var/www/html/shipping",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -218,7 +218,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672829924626</updated>
       <workItem from="1672829925780" duration="6476000" />
-      <workItem from="1672887627361" duration="2205000" />
+      <workItem from="1672887627361" duration="3042000" />
     </task>
     <task id="LOCAL-00001" summary="hello">
       <created>1672889472471</created>
