@@ -163,9 +163,16 @@ export default {
           visible: this.roles('admin')
         },
         {
-          title: this.$t('Statistics'),
+          title: this.$t('Dilers Statistics'),
           icon: 'mdi-calendar',
           link: '/statistics',
+          //visible: false,
+          visible: this.roles('admin')
+        },
+        {
+          title: this.$t('Date Statistics'),
+          icon: 'mdi-calendar',
+          link: '/statisticstwo',
           //visible: false,
           visible: this.roles('admin')
         },

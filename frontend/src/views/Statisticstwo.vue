@@ -1,36 +1,33 @@
 <template>
   <div class="container-fluid mt-5">
-    <v-footer padless>
-    <v-col
-      class="text-center"
-      cols="12"
-    >
-    <h5>Умумий микдор — {{server_items_length}}</h5>
-    </v-col>
-  </v-footer>
-
-
   <table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Диллер номи:</th>
-      <th scope="col">Микдори:</th>
-      <th scope="col"></th>
+      <th scope="col">Date:</th>
+      <th scope="col">Count:</th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="(dillerdata, itemObjKey) in dillersdata" :key="dillerdata.id">
+    <tr v-for="(datadate, itemObjKey) in datadates" :key="datadate.id">
       <th scope="row">{{itemObjKey + 1}}</th>
-      <td>{{ dillerdata.name }}</td>
-      <td>{{ dillerdata.ct }}</td>
-      <td></td>
+      <td>{{ datadate.sanasi }}</td>
+      <td>{{ datadate.soni }}</td>
     </tr>
   </tbody>
 </table>
+<v-footer padless>
+  <v-col
+    class="text-center"
+    cols="12"
+  >
+  <h5>Умумий микдор — {{ server_items_length }}</h5>
+  </v-col>
+</v-footer>
 
 </div>
 </template>
+
 <script>
 let axios = require("axios").default;
 export default {
@@ -38,7 +35,7 @@ export default {
     return {
       loading: false,
       vehicles: [],
-      dillersdata: [],
+      datadates: [],
       search: "",
       VehicleModal: false,
       form: {},
@@ -84,11 +81,10 @@ export default {
     },
     dilersData() {
       axios
-        .get(this.$store.state.backend_url + "/api/dillersdata")
-        .then((res) => {
-          this.dillersdata = res.data;
-          console.log(this.dillersdata);
-        });
+      .get(this.$store.state.backend_url + "/api/datadate")
+      .then((response) => {
+        this.datadates = response.data;
+      })
     },
   },
   mounted() {

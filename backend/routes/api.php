@@ -97,8 +97,7 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::post('vehicles/get-excel', 'VehicleController@getExcel');
     Route::post('dilers/get-excel', 'DilerController@getExcel');
     Route::get('dillersdata', 'DilerWinController@dillersdata');
-
-
+    Route::get('datadate', 'DilerWinController@datedatafc');
 });
 Route::post('shipping-vehicles', 'VehicleController@vehicles');
 Route::post('show-dilers', 'VehicleController@diler');

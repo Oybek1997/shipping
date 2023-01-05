@@ -133,6 +133,16 @@ const routes = [
     ],
   },
   {
+    path: '/statisticstwo',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        component: () => import('../views/Statisticstwo.vue'),
+      },
+    ],
+  },
+  {
     path: '/dilers',
     component: Layout,
     children: [

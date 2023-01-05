@@ -42,11 +42,16 @@ class DilerWinController extends Controller
     }
     public function dillersdata()
     {
-        $test = Diler::select()
-            ->withCount('dilervins as soni')
-            ->get();
+        $test = DB::select('select d.name, dv.ct  from dilers d inner join (SELECT dil_id, count(id) ct FROM diler_vins group by dil_id) dv on d.id = dv.dil_id order by ct desc');
         return $test;
     }
+
+    public function datedatafc()
+    {
+        $datadate = DB::select('SELECT SUBSTRING(tcd_time,1,10) sanasi, count(id) soni FROM diler_vins group by sanasi');
+        return $datadate;
+    }
+
     public function update(Request $request)
     {
         $id = $request['id'];
