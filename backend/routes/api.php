@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth:api', 'user.log']], function () {
     Route::get('dillersdata', 'DilerWinController@dillersdata');
     Route::get('datadate', 'DilerWinController@datedatafc');
     Route::get('datausers', 'DilerWinController@usersdatafc');
+    Route::delete('dilerwins/delete/{id}', 'DilerWinController@destroy');
 });
 
 Route::post('shipping-vehicles', 'VehicleController@vehicles');

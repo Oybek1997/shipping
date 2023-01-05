@@ -76,11 +76,11 @@
           vehicles.map((v) => v.id).indexOf(item.id) + from
         }}</template>
 
-        <template v-slot:item.options="{ item }"
-          ><v-icon color="primary" @click="editVehicle(item)"
-            >mdi-pencil sa</v-icon
-          >
-          <v-icon color="error" @click="deleteVehicle(item)">mdi-delete</v-icon>
+        <template v-slot:item.options="{ item }">
+<!--          ><v-icon color="primary" @click="editVehicle(item)"-->
+<!--            >mdi-pencil sa</v-icon-->
+<!--          >-->
+          <v-icon color="error" @click="deleteDilerWin(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
       <v-dialog v-model="downloadExcel" hide-overlay persistent width="300">
@@ -262,7 +262,7 @@ export default {
           });
         });
     },
-    deleteVehicle(item) {
+    deleteDilerWin(item) {
       Swal.fire({
         title: this.$t('swal_title'),
         text: this.$t('swal_text'),
@@ -274,8 +274,9 @@ export default {
       }).then((result) => {
         if (result.value) {
           this.$axios
+          this.$axios
             .delete(
-              this.$store.state.backend_url + '/api/vehicles/delete/' + item.id
+              this.$store.state.backend_url + '/api/dilerwins/delete/' + item.id
             )
             .then((res) => {
               console.log(res);
