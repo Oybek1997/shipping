@@ -30,9 +30,9 @@ class DilerWinController extends Controller
             $vehicle->where(function ($q) use ($content) {
                 $q->where('vin', 'like', '%' . $content . '%')
                     ->orWhere('tabno', 'like', '%' . $content . '%');
-                    //->orWhere('status', 'like', '%' . $content . '%')
-                   // ->orWhere('sector', 'like', '%' . $content . '%');
-                    //->orWhere('tabno', 'like', '%' . $content . '%');
+                //->orWhere('status', 'like', '%' . $content . '%')
+                // ->orWhere('sector', 'like', '%' . $content . '%');
+                //->orWhere('tabno', 'like', '%' . $content . '%');
             });
         }
         // dd(gettype($vehicle));
@@ -42,8 +42,8 @@ class DilerWinController extends Controller
     }
     public function dillersdata()
     {
-        $test=Diler::select()
-            ->withCount('dilervins As Count')
+        $test = Diler::select()
+            ->withCount('dilervins as soni')
             ->get();
         return $test;
     }
@@ -143,10 +143,9 @@ class DilerWinController extends Controller
 
     public function __construct()
     {
-        $this->base_url = env("BASE_URL","http://test-dy.uzautomotors.com/api/send_data");
+        $this->base_url = env("BASE_URL", "http://test-dy.uzautomotors.com/api/send_data");
 
         View::share('base_url', $this->base_url);
-
     }
 
 
@@ -154,7 +153,7 @@ class DilerWinController extends Controller
 
     public function vehicles(Request $request)
     {
-       // return $request->all();
+        // return $request->all();
         $user = new UserController;
         $user->login($request);
         $loginResponse = $user->login($request)->original;
@@ -202,7 +201,7 @@ class DilerWinController extends Controller
                 [
                     'vin' => $vehicleSingle['vin'],
                     'tabno' => $vehicleSingle['tabno'],
-                    'status' => $vehicleSingle['status']+1,
+                    'status' => $vehicleSingle['status'] + 1,
                     'sector' => $vehicleSingle['sector'],
                     'row' => $vehicleSingle['row'],
                     'tcd_date' => $vehicleSingle['tcd_date']
@@ -224,7 +223,7 @@ class DilerWinController extends Controller
     public function diler(Request $request)
     {
 
-// return $request->all();
+        // return $request->all();
         $user = new UserController;
         $user->login($request);
         $loginResponse = $user->login($request)->original;
@@ -277,15 +276,15 @@ class DilerWinController extends Controller
         $resp = array();
 
         foreach ($data as $dilerWinSingle) {
-            $dealer=Diler::where('name',$dilerWinSingle["name"])->first();
+            $dealer = Diler::where('name', $dilerWinSingle["name"])->first();
 
             //return $dealer ? $dealer->id : '';
 
             $dilerWinModel = new DilerVin();
-            $dilerWinModel->dil_id=$dealer->id;
-            $dilerWinModel->vin=$dilerWinSingle["vin"];
-            $dilerWinModel->tcd_time=$dilerWinSingle["tcd_time"];
-            $dilerWinModel->tabno=$dilerWinSingle["tabno"];
+            $dilerWinModel->dil_id = $dealer->id;
+            $dilerWinModel->vin = $dilerWinSingle["vin"];
+            $dilerWinModel->tcd_time = $dilerWinSingle["tcd_time"];
+            $dilerWinModel->tabno = $dilerWinSingle["tabno"];
             $dilerWinModel->save();
             $array_item =
                 [
@@ -353,24 +352,23 @@ class DilerWinController extends Controller
                 $vehicle->sector = $sector;
                 $vehicle->triler_driver_id = $triler->id;
 
-                if ($status==4) {
+                if ($status == 4) {
                     $vehicle->send_by = Auth::id();
                     $vehicle->send_at = date('Y-m-d H:i:s');
-                } elseif ($status==5) {
+                } elseif ($status == 5) {
                     $vehicle->warehouse_by = Auth::id();
                     $vehicle->warehouse_at = date('Y-m-d H:i:s');
-                } elseif ($status==6) {
+                } elseif ($status == 6) {
                     $vehicle->warehouse_out_by = Auth::id();
                     $vehicle->warehouse_out_at = date('Y-m-d H:i:s');
-                }  elseif ($status==7) {
+                } elseif ($status == 7) {
                     $vehicle->receive_by = Auth::id();
                     $vehicle->receive_at = date('Y-m-d H:i:s');
-                }  elseif ($status==8) {
+                } elseif ($status == 8) {
                     $vehicle->finish_by = Auth::id();
                     $vehicle->finish_at = date('Y-m-d H:i:s');
-                }
-                else{
-                    print ("Bunday Status mavjud emas");
+                } else {
+                    print("Bunday Status mavjud emas");
                 }
                 try {
                     $vehicle->save();
@@ -385,31 +383,30 @@ class DilerWinController extends Controller
     }
 
 
-//deleteFunction
+    //deleteFunction
     public function deleteFunction()
     {
-//        $allVehicles=Vehicle::all();
-//        // dd($user);
-//         $allVehicles->truncate();
+        //        $allVehicles=Vehicle::all();
+        //        // dd($user);
+        //         $allVehicles->truncate();
 
         DB::table('vehicles')->delete();
-
     }
 
 
 
     public function getExcel(Request $request)
     {
-//        return $request;
+        //        return $request;
         $page = $request->input('pagination.page');
 
         $perPage = $request->input('pagination.itemsPerPage');
-//        return $page;
+        //        return $page;
         $details = Vehicle::select('*')
             ->paginate($perPage, ['*'], 'page name', $page);
         $excel = [];
 
-//        return $details;
+        //        return $details;
 
 
         foreach ($details as $key => $value) {
@@ -425,7 +422,4 @@ class DilerWinController extends Controller
         }
         return $excel;
     }
-
-
-
 }
