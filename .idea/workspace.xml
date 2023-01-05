@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae58fbca-99a1-42c5-a5a0-f0e1e0229e3c" name="Changes" comment="hello">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8acb7934-3888-4537-81f4-86e2c332404b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8acb7934-3888-4537-81f4-86e2c332404b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/DilerVin.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/DilerVin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/DilerWinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/DilerWinController.php" afterDir="false" />
@@ -22,7 +21,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/backend" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -174,6 +173,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "grid.search.filter.rows": "true",
     "last_opened_file_path": "/home/oybek/Downloads/diler_vins.sql",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

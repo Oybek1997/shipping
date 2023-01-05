@@ -140,7 +140,7 @@ class DilerWinController extends Controller
     }
     public function destroy($id)
     {
-        Vehicle::find($id)->delete();
+        DilerVin::find($id)->delete();
         // dd($user);
         // $user->delete();
     }
