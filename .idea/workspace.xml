@@ -10,7 +10,7 @@
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/DilerWinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/DilerWinController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/shipping" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/DilerWins.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/DilerWins.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Users.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +209,7 @@
       <workItem from="1672829925780" duration="6476000" />
       <workItem from="1672887627361" duration="3042000" />
       <workItem from="1672935329758" duration="283000" />
-      <workItem from="1672973941694" duration="854000" />
+      <workItem from="1672973941694" duration="2206000" />
     </task>
     <task id="LOCAL-00001" summary="hello">
       <created>1672889472471</created>

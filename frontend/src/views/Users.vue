@@ -41,9 +41,9 @@
         <template v-slot:item.id="{ item }"
           >{{ users.map((v) => v.id).indexOf(item.id) + 1 }}
         </template>
-        <template v-slot:item.icons="{ item }">
-          <v-icon color="error" @click="deleteUser(item)">mdi-delete</v-icon>
-        </template>
+<!--        <template v-slot:item.icons="{ item }">-->
+<!--          <v-icon color="error" @click="deleteUser(item)">mdi-delete</v-icon>-->
+<!--        </template>-->
       </v-data-table>
       <v-dialog
         v-model="UserModal"
@@ -288,13 +288,13 @@ export default {
         { text: this.$t('Role'), value: 'role.name', sortable: false },
         { text: this.$t('user.created'), value: 'crt', sortable: false },
         { text: this.$t('user.updated'), value: 'upd', sortable: false },
-        {
-          text: 'Amallar',
-          align: 'center',
-          value: 'icons',
-          sortable: false,
-          width: 80,
-        },
+        // {
+        //   text: 'Amallar',
+        //   align: 'center',
+        //   value: 'icons',
+        //   sortable: false,
+        //   width: 80,
+        // },
       ];
     },
   },
