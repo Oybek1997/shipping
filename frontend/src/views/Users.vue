@@ -295,6 +295,7 @@ export default {
         //   sortable: false,
         //   width: 80,
         // },
+
       ];
     },
   },
