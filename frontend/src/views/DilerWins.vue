@@ -76,12 +76,12 @@
           vehicles.map((v) => v.id).indexOf(item.id) + from
         }}</template>
 
-        <template v-slot:item.options="{ item }">
+<!--        <template v-slot:item.options="{ item }">-->
 <!--          ><v-icon color="primary" @click="editVehicle(item)"-->
 <!--            >mdi-pencil sa</v-icon-->
 <!--          >-->
-          <v-icon color="error" @click="deleteDilerWin(item)">mdi-delete</v-icon>
-        </template>
+<!--          <v-icon color="error" @click="deleteDilerWin(item)">mdi-delete</v-icon>-->
+<!--        </template>-->
       </v-data-table>
       <v-dialog v-model="downloadExcel" hide-overlay persistent width="300">
         <v-card>
@@ -194,13 +194,13 @@ export default {
         { text: this.$t('VIN'), value: 'vin', sortable: false },
         { text: this.$t('Tabno'), value: 'tabno', sortable: false },
         { text: this.$t('Tcd_date'), value: 'tcd_time', sortable: false },
-        {
-          text: 'Amallar',
-          align: 'center',
-          value: 'options',
-          sortable: false,
-          width: 80,
-        },
+        // {
+        //   text: 'Amallar',
+        //   align: 'center',
+        //   value: 'options',
+        //   sortable: false,
+        //   width: 80,
+        // },
       ];
     },
     screenHeight() {
